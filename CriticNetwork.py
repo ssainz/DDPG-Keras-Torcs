@@ -1,8 +1,8 @@
 import numpy as np
 import math
-from keras.initializations import normal, identity
+from keras.initializers import normal, identity
 from keras.models import model_from_json, load_model
-from keras.engine.training import collect_trainable_weights
+#from keras.engine.training import collect_trainable_weights
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Input, merge, Lambda, Activation
 from keras.models import Sequential, Model
@@ -38,7 +38,7 @@ class CriticNetwork(object):
     def target_train(self):
         critic_weights = self.model.get_weights()
         critic_target_weights = self.target_model.get_weights()
-        for i in xrange(len(critic_weights)):
+        for i in range(len(critic_weights)):
             critic_target_weights[i] = self.TAU * critic_weights[i] + (1 - self.TAU)* critic_target_weights[i]
         self.target_model.set_weights(critic_target_weights)
 

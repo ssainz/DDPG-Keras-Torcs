@@ -1,9 +1,9 @@
 import numpy as np
 import math
-from keras.initializations import normal, identity
+from keras.initializers import normal, identity, VarianceScaling
 from keras.models import model_from_json
 from keras.models import Sequential, Model
-from keras.engine.training import collect_trainable_weights
+#from keras.engine.training import collect_trainable_weights
 from keras.layers import Dense, Flatten, Input, merge, Lambda
 from keras.optimizers import Adam
 import tensorflow as tf
@@ -39,7 +39,7 @@ class ActorNetwork(object):
     def target_train(self):
         actor_weights = self.model.get_weights()
         actor_target_weights = self.target_model.get_weights()
-        for i in xrange(len(actor_weights)):
+        for i in range(len(actor_weights)):
             actor_target_weights[i] = self.TAU * actor_weights[i] + (1 - self.TAU)* actor_target_weights[i]
         self.target_model.set_weights(actor_target_weights)
 
@@ -48,10 +48,9 @@ class ActorNetwork(object):
         S = Input(shape=[state_size])   
         h0 = Dense(HIDDEN1_UNITS, activation='relu')(S)
         h1 = Dense(HIDDEN2_UNITS, activation='relu')(h0)
-        Steering = Dense(1,activation='tanh',init=lambda shape, name: normal(shape, scale=1e-4, name=name))(h1)  
-        Acceleration = Dense(1,activation='sigmoid',init=lambda shape, name: normal(shape, scale=1e-4, name=name))(h1)   
-        Brake = Dense(1,activation='sigmoid',init=lambda shape, name: normal(shape, scale=1e-4, name=name))(h1) 
+        Steering =  Dense(1,activation='tanh',init=lambda shape:VarianceScaling(scale=1e-4)(shape))(h1)
+        Acceleration =  Dense(1,activation='sigmoid',init=lambda shape:VarianceScaling(scale=1e-4)(shape))(h1)
+        Brake =  Dense(1,activation='sigmoid',init=lambda shape:VarianceScaling(scale=1e-4)(shape))(h1)
         V = merge([Steering,Acceleration,Brake],mode='concat')          
         model = Model(input=S,output=V)
         return model, model.trainable_weights, S
-
