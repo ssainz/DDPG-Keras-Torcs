@@ -1,6 +1,7 @@
 from gym_torcs import TorcsEnv
 import numpy as np
 import random
+import pickle
 import argparse
 from keras.models import model_from_json, Model
 from keras.models import Sequential
@@ -29,18 +30,20 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     action_dim = 3  #Steering/Acceleration/Brake
     state_dim = 29  #of sensors input
 
-    np.random.seed(1337)
+    np.random.seed(5000)
 
     vision = False
 
     EXPLORE = 100000.
-    episode_count = 2000
-    max_steps = 100000
+    episode_count = 200
+    max_steps = 3000
     reward = 0
     done = False
     step = 0
     epsilon = 1
     indicator = 0
+    esar2 = []
+    esar4 = []
 
     #Tensorflow GPU optimization
     config = tf.ConfigProto()
@@ -135,6 +138,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
             s_t = s_t1
         
             print("Episode", i, "Step", step, "Action", a_t, "Reward", r_t, "Loss", loss)
+            esar = (i, step, a_t, r_t, loss)
+            esar2.append(esar)
         
             step += 1
             if done:
@@ -155,8 +160,21 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         print("Total Step: " + str(step))
         print("")
 
+        esar3 = (i, total_reward)
+        esar4.append(esar3)
+
+
     env.end()  # This is for shutting down TORCS
     print("Finish.")
+    print("Saving esars.")
+
+    def save_object(obj, filename):
+        with open(filename, 'wb') as output:
+            pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+
+    save_object(esar2, 'IntraEpisode.pkl')
+    save_object(esar4, 'InterEpisode.pkl')
+
 
 if __name__ == "__main__":
     playGame()
