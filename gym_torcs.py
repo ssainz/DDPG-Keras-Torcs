@@ -10,8 +10,10 @@ import os
 import time
 
 class TorcsEnv:
-    terminal_judge_start = 100  # If after 100 timestep still no progress, terminated
+    terminal_judge_start = 300  # If after 1000 timestep still no progress, terminated
+    terminal_judge_startCollision = 10
     termination_limit_progress = 1  # [km/h], episode terminates if car is running slower than this limit
+    termination_limit_progressCollision = 1
     default_speed = 200
 
     initial_reset = True
@@ -141,11 +143,16 @@ class TorcsEnv:
             reward = -1
 
         # Termination judgement #########################
+        # Episode is terminated if the car is out of track
         episode_terminate = False
-        # if (abs(track.any()) > 1 or abs(trackPos) > 1):  # Episode is terminated if the car is out of track
-        #    reward = -200
-        #    episode_terminate = True
-        #    client.R.d['meta'] = True
+
+
+        if (abs(track.any()) > 1 or abs(trackPos) > 1):
+            rewards = -20
+            print('Out of Bounds!')
+            if(obs['damage']) > 0:
+                reward = -60
+                print('Wall or Car Hit!')
 
         if self.terminal_judge_start < self.time_step: # Episode terminates if the progress of agent is small
            if progress < self.termination_limit_progress:
@@ -238,6 +245,22 @@ class TorcsEnv:
         b = np.array(b).reshape(sz)
         return np.array([r, g, b], dtype=np.uint8)
 
+    def obs_vision_to_image_greyscale(self, obs_image_vec):
+        image_vec = obs_image_vec
+        temp = []
+        # convert size 64x64x3 = 12288 to 64x64=4096 2-D list
+        # with rgb values grouped together.
+        # Format similar to the observation in openai gym
+        # 160 x 160 = 25600
+        # limit = 25600
+        # 64 x 64 = 4096
+        # limit = 4096
+        # 128 x 128 = 16384
+        limit = 16384
+        for i in range(limit):
+            temp.append(image_vec[i])
+        return np.array(temp, dtype=np.uint8)
+
     def make_observaton(self, raw_obs):
         if self.vision is False:
             names = ['focus',
@@ -271,7 +294,8 @@ class TorcsEnv:
             Observation = col.namedtuple('Observaion', names)
 
             # Get RGB from observation
-            image_rgb = self.obs_vision_to_image_rgb(raw_obs[names[8]])
+            #image_rgb = self.obs_vision_to_image_rgb(raw_obs[names[8]])
+            image_rgb = self.obs_vision_to_image_greyscale(raw_obs[names[8]])
 
             return Observation(focus=np.array(raw_obs['focus'], dtype=np.float32)/200.,
                                speedX=np.array(raw_obs['speedX'], dtype=np.float32)/self.default_speed,

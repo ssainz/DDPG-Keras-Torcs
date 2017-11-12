@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ac93a9-f1e2-4e72-aec6-a2c9d6220e6b" name="Default" comment="a">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/a.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actormodel.h5" afterPath="$PROJECT_DIR$/actormodel.h5" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/criticmodel.h5" afterPath="$PROJECT_DIR$/criticmodel.h5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CriticNetwork.py" afterPath="$PROJECT_DIR$/CriticNetwork.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autostart.sh" afterPath="$PROJECT_DIR$/autostart.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ddpg.py" afterPath="$PROJECT_DIR$/ddpg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gym_torcs.py" afterPath="$PROJECT_DIR$/gym_torcs.py" />
     </list>
@@ -43,8 +41,8 @@
       <file leaf-file-name="ddpg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ddpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="143" column="21" lean-forward="true" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
+            <state relative-caret-position="252">
+              <caret line="128" column="7" lean-forward="true" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -52,44 +50,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="autostart.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autostart.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="autostart.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/gym_torcs/autostart.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="16" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gym_torcs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gym_torcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1863">
-              <caret line="157" column="37" lean-forward="true" selection-start-line="157" selection-start-column="37" selection-end-line="157" selection-end-column="37" />
+            <state relative-caret-position="180">
+              <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1510502499665" expanded="true" signature="5475:5759" ph="..." />
+                <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
+                <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snakeoil3_gym.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/snakeoil3_gym.py">
+      <file leaf-file-name="ActorNetwork.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ActorNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="140" column="14" lean-forward="false" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="14" />
+            <state relative-caret-position="207">
+              <caret line="43" column="58" lean-forward="false" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -107,10 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data_size</find>
-      <find>drive(</find>
-      <find>50</find>
-      <find>-1</find>
       <find>name</find>
       <find>termi</find>
       <find>angle</find>
@@ -132,7 +107,15 @@
       <find>vision</find>
       <find>reward</find>
       <find>step</find>
+      <find>no progress</find>
+      <find>vtorcs</find>
+      <find>get rbg</find>
+      <find>rgb</find>
       <find>r_t</find>
+      <find>actions</find>
+      <find>weights</find>
+      <find>save_weights</find>
+      <find>termination_limit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,9 +141,9 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/te.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/test3.ipynb" />
         <option value="$PROJECT_DIR$/a.ipynb" />
+        <option value="$PROJECT_DIR$/autostart.sh" />
         <option value="$PROJECT_DIR$/gym_torcs.py" />
         <option value="$PROJECT_DIR$/ddpg.py" />
-        <option value="$PROJECT_DIR$/autostart.sh" />
       </list>
     </option>
   </component>
@@ -204,8 +187,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/gym_torcs/autostart.sh" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Torcs_car/snakeoil3_gym.py" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Torcs_car/snakeoil3_gym.py" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -411,7 +395,8 @@
           <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="153" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510502499665" expanded="true" signature="5475:5759" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -468,7 +453,8 @@
           <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510502499665" expanded="true" signature="5475:5759" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -505,7 +491,8 @@
           <caret line="254" column="0" lean-forward="false" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510502499665" expanded="true" signature="5475:5759" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -572,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-122">
           <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActorNetwork.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="50" column="64" lean-forward="true" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -651,21 +631,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gym_torcs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1863">
-          <caret line="157" column="37" lean-forward="true" selection-start-line="157" selection-start-column="37" selection-end-line="157" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510502499665" expanded="true" signature="5475:5759" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/gym_torcs/autostart.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="16" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -673,15 +642,43 @@
     <entry file="file://$PROJECT_DIR$/autostart.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/gym_torcs/gym_torcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="286" column="21" lean-forward="false" selection-start-line="286" selection-start-column="21" selection-end-line="286" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ActorNetwork.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="43" column="58" lean-forward="false" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym_torcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ddpg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="143" column="21" lean-forward="true" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
+        <state relative-caret-position="252">
+          <caret line="128" column="7" lean-forward="true" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>

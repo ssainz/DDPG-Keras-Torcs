@@ -36,7 +36,7 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
     EXPLORE = 100000.
     episode_count = 200
-    max_steps = 3000
+    max_steps = 1800
     reward = 0
     done = False
     step = 0
@@ -120,7 +120,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
             target_q_values = critic.target_model.predict([new_states, actor.target_model.predict(new_states)])  
            
-            for k in range(len(batch)):
+            for k in range(len
+                               (batch)):
                 if dones[k]:
                     y_t[k] = rewards[k]
                 else:
@@ -160,7 +161,7 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         print("Total Step: " + str(step))
         print("")
 
-        esar3 = (i, total_reward)
+        esar3 = (i, step, total_reward)
         esar4.append(esar3)
 
 
