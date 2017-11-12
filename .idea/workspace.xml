@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ac93a9-f1e2-4e72-aec6-a2c9d6220e6b" name="Default" comment="a">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actormodel.h5" afterPath="$PROJECT_DIR$/actormodel.h5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/criticmodel.h5" afterPath="$PROJECT_DIR$/criticmodel.h5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ddpg.py" afterPath="$PROJECT_DIR$/ddpg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gym_torcs.py" afterPath="$PROJECT_DIR$/gym_torcs.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ddpg.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ddpg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ddpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="128" column="7" lean-forward="true" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
+            <state relative-caret-position="306">
+              <caret line="137" column="7" lean-forward="true" selection-start-line="137" selection-start-column="7" selection-end-line="137" selection-end-column="7" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -50,15 +46,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gym_torcs.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gym_torcs.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gym_torcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+            <state relative-caret-position="306">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
-                <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+                <marker date="1510509500427" expanded="true" signature="5405:5584" ph="..." />
+                <marker date="1510509500427" expanded="true" signature="5630:5914" ph="..." />
               </folding>
             </state>
           </provider>
@@ -114,8 +110,8 @@
       <find>r_t</find>
       <find>actions</find>
       <find>weights</find>
-      <find>save_weights</find>
       <find>termination_limit</find>
+      <find>save_weights</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,8 +138,8 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/test3.ipynb" />
         <option value="$PROJECT_DIR$/a.ipynb" />
         <option value="$PROJECT_DIR$/autostart.sh" />
-        <option value="$PROJECT_DIR$/gym_torcs.py" />
         <option value="$PROJECT_DIR$/ddpg.py" />
+        <option value="$PROJECT_DIR$/gym_torcs.py" />
       </list>
     </option>
   </component>
@@ -395,8 +391,8 @@
           <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="153" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
-            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -453,8 +449,8 @@
           <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
-            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -491,8 +487,8 @@
           <caret line="254" column="0" lean-forward="false" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
-            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -663,24 +659,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gym_torcs.py">
+    <entry file="file://$PROJECT_DIR$/ddpg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+        <state relative-caret-position="306">
+          <caret line="137" column="7" lean-forward="true" selection-start-line="137" selection-start-column="7" selection-end-line="137" selection-end-column="7" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1510509378481" expanded="true" signature="5405:5584" ph="..." />
-            <marker date="1510509378481" expanded="true" signature="5630:5914" ph="..." />
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ddpg.py">
+    <entry file="file://$PROJECT_DIR$/gym_torcs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="128" column="7" lean-forward="true" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
+        <state relative-caret-position="306">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1510509500427" expanded="true" signature="5405:5584" ph="..." />
+            <marker date="1510509500427" expanded="true" signature="5630:5914" ph="..." />
           </folding>
         </state>
       </provider>

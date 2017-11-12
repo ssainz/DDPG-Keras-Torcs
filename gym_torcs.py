@@ -14,7 +14,7 @@ class TorcsEnv:
     terminal_judge_startCollision = 10
     termination_limit_progress = 1  # [km/h], episode terminates if car is running slower than this limit
     termination_limit_progressCollision = 1
-    default_speed = 200
+    default_speed = 150
 
     initial_reset = True
 
