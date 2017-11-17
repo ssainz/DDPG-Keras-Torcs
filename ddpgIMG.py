@@ -30,13 +30,11 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     LRC = 0.001     #Lerning rate for Critic
 
     action_dim = 3  #Steering/Acceleration/Brake
-    state_dim = 29  #of sensors input
+    state_dim = 16384  #of sensors input
 
     np.random.seed(61502)
 
-
-
-    vision = False
+    vision = True
 
     EXPLORE = 100000.
     episode_count = 600
@@ -66,10 +64,10 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     #Now load the weight
     print("Now we load the weight")
     try:
-        actor.model.load_weights("actormodel2.h5")
-        critic.model.load_weights("criticmodel2.h5")
-        actor.target_model.load_weights("actormodel2.h5")
-        critic.target_model.load_weights("criticmodel2.h5")
+        # actor.model.load_weights("actormodel2.h5")
+        # critic.model.load_weights("criticmodel2.h5")
+        # actor.target_model.load_weights("actormodel2.h5")
+        # critic.target_model.load_weights("criticmodel2.h5")
         print("Weight load successfully")
     except:
         print("Cannot find the weight")
@@ -84,7 +82,7 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         else:
             ob = env.reset()
 
-        s_t = np.hstack((ob.angle, ob.track, ob.trackPos, ob.speedX, ob.speedY,  ob.speedZ, ob.wheelSpinVel/100.0, ob.rpm, ob.img))
+        s_t = np.hstack((ob.img))
      
         total_reward = 0.
         for j in range(max_steps):
@@ -101,9 +99,9 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
             noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2], -0.1 , 1.00, 0.05)
 
             #The following code do the stochastic brake
-            # if random.random() <= 0.05:
-            #    print("********Now we apply the brake***********")
-            #    noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2],  0.2 , 1.00, 0.10)
+            if random.random() <= 0.05:
+               print("********Now we apply the brake***********")
+               noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2],  0.2 , 1.00, 0.10)
 
             a_t[0][0] = a_t_original[0][0] + noise_t[0][0]
             a_t[0][1] = a_t_original[0][1] + noise_t[0][1]
@@ -111,7 +109,7 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
             ob, r_t, done, info = env.step(a_t[0])
 
-            s_t1 = np.hstack((ob.angle, ob.track, ob.trackPos, ob.speedX, ob.speedY, ob.speedZ, ob.wheelSpinVel/100.0, ob.rpm, ob.img))
+            s_t1 = np.hstack((ob.img))
         
             buff.add(s_t, a_t[0], r_t, s_t1, done)      #Add replay buffer
             
@@ -155,11 +153,11 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         if np.mod(i, 3) == 0:
             if (train_indicator):
                 print("Now we save model")
-                actor.model.save_weights("actormodel2.h5", overwrite=True)
+                actor.model.save_weights("actormodelIMG.h5", overwrite=True)
                 with open("actormodel.json", "w") as outfile:
                     json.dump(actor.model.to_json(), outfile)
 
-                critic.model.save_weights("criticmodel2.h5", overwrite=True)
+                critic.model.save_weights("criticmodelIMG.h5", overwrite=True)
                 with open("criticmodel.json", "w") as outfile:
                     json.dump(critic.model.to_json(), outfile)
 

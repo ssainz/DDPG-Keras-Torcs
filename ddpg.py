@@ -1,6 +1,8 @@
 from gym_torcs import TorcsEnv
 import numpy as np
 import random
+
+
 import pickle
 import argparse
 from keras.models import model_from_json, Model
@@ -30,12 +32,12 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     action_dim = 3  #Steering/Acceleration/Brake
     state_dim = 29  #of sensors input
 
-    np.random.seed(5000)
+    np.random.seed(61502)
 
     vision = False
 
     EXPLORE = 100000.
-    episode_count = 200
+    episode_count = 600
     max_steps = 1800
     reward = 0
     done = False
@@ -62,10 +64,10 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     #Now load the weight
     print("Now we load the weight")
     try:
-        actor.model.load_weights("actormodel.h5")
-        critic.model.load_weights("criticmodel.h5")
-        actor.target_model.load_weights("actormodel.h5")
-        critic.target_model.load_weights("criticmodel.h5")
+        actor.model.load_weights("actormodel2.h5")
+        critic.model.load_weights("criticmodel2.h5")
+        actor.target_model.load_weights("actormodel2.h5")
+        critic.target_model.load_weights("criticmodel2.h5")
         print("Weight load successfully")
     except:
         print("Cannot find the weight")
@@ -75,8 +77,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
         print("Episode : " + str(i) + " Replay Buffer " + str(buff.count()))
 
-        if np.mod(i, 3) == 0:
-            ob = env.reset(relaunch=True)   #relaunch TORCS every 3 episode because of the memory leak error
+        if np.mod(i, 500) == 0:
+            ob = env.reset(relaunch=True)   #relaunch TORCS every 500 episode because of the memory leak error
         else:
             ob = env.reset()
 
@@ -87,6 +89,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
             loss = 0 
             epsilon -= 1.0 / EXPLORE
             a_t = np.zeros([1,action_dim])
+
+
             noise_t = np.zeros([1,action_dim])
             
             a_t_original = actor.model.predict(s_t.reshape(1, s_t.shape[0]))
@@ -95,9 +99,9 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
             noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2], -0.1 , 1.00, 0.05)
 
             #The following code do the stochastic brake
-            if random.random() <= 0.1:
-               print("********Now we apply the brake***********")
-               noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2],  0.2 , 1.00, 0.10)
+            # if random.random() <= 0.05:
+            #    print("********Now we apply the brake***********")
+            #    noise_t[0][2] = train_indicator * max(epsilon, 0) * OU.function(a_t_original[0][2],  0.2 , 1.00, 0.10)
 
             a_t[0][0] = a_t_original[0][0] + noise_t[0][0]
             a_t[0][1] = a_t_original[0][1] + noise_t[0][1]
@@ -149,11 +153,11 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         if np.mod(i, 3) == 0:
             if (train_indicator):
                 print("Now we save model")
-                actor.model.save_weights("actormodel.h5", overwrite=True)
+                actor.model.save_weights("actormodel2.h5", overwrite=True)
                 with open("actormodel.json", "w") as outfile:
                     json.dump(actor.model.to_json(), outfile)
 
-                critic.model.save_weights("criticmodel.h5", overwrite=True)
+                critic.model.save_weights("criticmodel2.h5", overwrite=True)
                 with open("criticmodel.json", "w") as outfile:
                     json.dump(critic.model.to_json(), outfile)
 
@@ -163,7 +167,6 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
         esar3 = (i, step, total_reward)
         esar4.append(esar3)
-
 
     env.end()  # This is for shutting down TORCS
     print("Finish.")
