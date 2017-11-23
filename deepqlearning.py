@@ -75,7 +75,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
         "save_model_freq": 1000,
         "target_model_update_freq": 100,
         "normalize_weights": True,
-        "learning_rate": 0.00025,
+        #"learning_rate": 0.00025,
+        'learning_rate': 0.001,
         "model": None
     }
     dqn = DeepQNetwork(sess, num_dqn_actions, base_dir, args)

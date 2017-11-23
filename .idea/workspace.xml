@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ac93a9-f1e2-4e72-aec6-a2c9d6220e6b" name="Default" comment="a">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/deepqlearning.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gym_torcs_dqn.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/png.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/state.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InterEpisode.pkl" afterPath="$PROJECT_DIR$/InterEpisode.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntraEpisode.pkl" afterPath="$PROJECT_DIR$/IntraEpisode.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actormodelIMG.h5" afterPath="$PROJECT_DIR$/actormodelIMG.h5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/criticmodelIMG.h5" afterPath="$PROJECT_DIR$/criticmodelIMG.h5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actormodel.json" afterPath="$PROJECT_DIR$/actormodel.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autostart.sh" afterPath="$PROJECT_DIR$/autostart.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/criticmodel.json" afterPath="$PROJECT_DIR$/criticmodel.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dqn.py" afterPath="$PROJECT_DIR$/dqn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deepqlearning.py" afterPath="$PROJECT_DIR$/deepqlearning.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/read_step_trend.py" afterPath="$PROJECT_DIR$/read_step_trend.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,7 +53,7 @@
       <file leaf-file-name="dqn.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dqn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="792">
               <caret line="65" column="53" lean-forward="false" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -76,10 +65,22 @@
       <file leaf-file-name="deepqlearning.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deepqlearning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+            <state relative-caret-position="234">
+              <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="read_step_trend.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/read_step_trend.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,6 +178,7 @@
         <option value="$PROJECT_DIR$/gym_torcs_dqn.py" />
         <option value="$PROJECT_DIR$/autostart.sh" />
         <option value="$PROJECT_DIR$/dqn.py" />
+        <option value="$PROJECT_DIR$/read_step_trend.py" />
         <option value="$PROJECT_DIR$/deepqlearning.py" />
       </list>
     </option>
@@ -437,13 +439,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/a.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/te.py" />
     <entry file="file://$PROJECT_DIR$/ddpg.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -705,9 +700,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/read_step_trend.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dqn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="792">
           <caret line="65" column="53" lean-forward="false" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
@@ -717,8 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deepqlearning.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="70" column="25" lean-forward="false" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+        <state relative-caret-position="234">
+          <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
