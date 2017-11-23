@@ -7,39 +7,21 @@ import tensorflow as tf
 gamma = .99
 
 
-class GradientClippingOptimizer(tf.train.Optimizer):
-    def __init__(self, optimizer, use_locking=False, name="GradientClipper"):
-        super(GradientClippingOptimizer, self).__init__(use_locking, name)
-        self.optimizer = optimizer
-
-    def compute_gradients(self, *args, **kwargs):
-        grads_and_vars = self.optimizer.compute_gradients(*args, **kwargs)
-        clipped_grads_and_vars = []
-        for (grad, var) in grads_and_vars:
-            if grad is not None:
-                clipped_grads_and_vars.append((tf.clip_by_value(grad, -1, 1), var))
-            else:
-                clipped_grads_and_vars.append((grad, var))
-        return clipped_grads_and_vars
-
-    def apply_gradients(self, *args, **kwargs):
-        return self.optimizer.apply_gradients(*args, **kwargs)
-
-
 class DeepQNetwork:
-    def __init__(self, numActions, baseDir, args):
+    def __init__(self, sess, numActions, baseDir, args):
 
         self.numActions = numActions
         self.baseDir = baseDir
-        self.saveModelFrequency = args.save_model_freq
-        self.targetModelUpdateFrequency = args.target_model_update_freq
-        self.normalizeWeights = args.normalize_weights
+        self.saveModelFrequency = args["save_model_freq"]
+        self.targetModelUpdateFrequency = args["target_model_update_freq"]
+        self.normalizeWeights = args["normalize_weights"]
 
         self.staleSess = None
 
         tf.set_random_seed(123456)
 
-        self.sess = tf.Session()
+        # self.sess = tf.Session()
+        self.sess = sess
 
         assert (len(tf.global_variables()) == 0), "Expected zero variables"
         self.x, self.y = self.buildNetwork('policy', True, numActions)
@@ -54,6 +36,7 @@ class DeepQNetwork:
         trainable_variables = tf.trainable_variables()
         all_variables = tf.global_variables()
         for i in range(0, len(trainable_variables)):
+            # Update operation : update Q_target = Q.
             self.update_target.append(all_variables[len(trainable_variables) + i].assign(trainable_variables[i]))
 
         self.a = tf.placeholder(tf.float32, shape=[None, numActions])
@@ -75,8 +58,25 @@ class DeepQNetwork:
         # Note tried gradient clipping with rmsprop with this particular loss function and it seemed to suck
         # Perhaps I didn't run it long enough
         # optimizer = GradientClippingOptimizer(tf.train.RMSPropOptimizer(args.learning_rate, decay=.95, epsilon=.01))
-        optimizer = tf.train.RMSPropOptimizer(args.learning_rate, decay=.95, epsilon=.01)
-        self.train_step = optimizer.minimize(self.loss)
+        #optimizer = tf.train.RMSPropOptimizer(args["learning_rate"], decay=.95, epsilon=.01)
+        #self.train_step = optimizer.minimize(self.loss)
+
+
+        opt = tf.train.AdamOptimizer(learning_rate=args["learning_rate"])
+        # Compute the gradients for a list of variables.
+        grads_and_vars = opt.compute_gradients(loss)
+
+        # grads_and_vars is a list of tuples (gradient, variable).  Do whatever you
+        # need to the 'gradient' part, for example cap them, etc.
+        capped_grads_and_vars = []
+        for grad, var in grads_and_vars:
+            if grad is not None:
+                grad_ = tf.clip_by_value(grad, -1., 1.)
+            else:
+                grad_ = tf.zeros_like(var)
+            capped_grads_and_vars.append((grad_, var))
+        self.train_step = opt.apply_gradients(capped_grads_and_vars)
+
 
         self.saver = tf.train.Saver(max_to_keep=25)
 
@@ -86,22 +86,23 @@ class DeepQNetwork:
 
         self.summary_writer = tf.summary.FileWriter(self.baseDir + '/tensorboard', self.sess.graph)
 
-        if args.model is not None:
-            print('Loading from model file %s' % (args.model))
-            self.saver.restore(self.sess, args.model)
+        if args["model"] is not None:
+            print('Loading from model file %s' % (args["model"]))
+            self.saver.restore(self.sess, args["model"])
 
     def buildNetwork(self, name, trainable, numActions):
 
         print("Building network for %s trainable=%s" % (name, trainable))
 
         # First layer takes a screen, and shrinks by 2x
-        x = tf.placeholder(tf.uint8, shape=[None, 84, 84, 4], name="screens")
+        x = tf.placeholder(tf.uint8, shape=[None, 128, 128, 4], name="screens")
         print(x)
 
         x_normalized = tf.to_float(x) / 255.0
         print(x_normalized)
 
         # Second layer convolves 32 8x8 filters with stride 4 with relu
+        # ( ( 128 - 8) / 4 ) + 1 = 31. Final is: 31 x 31 x 32
         with tf.variable_scope("cnn1_" + name):
             W_conv1, b_conv1 = self.makeLayerVariables([8, 8, 4, 32], trainable, "conv1")
 
@@ -110,6 +111,7 @@ class DeepQNetwork:
             print(h_conv1)
 
         # Third layer convolves 64 4x4 filters with stride 2 with relu
+        # ( ( 31 - 4 ) / 2 ) + 1 = 14. Final is: 14 x 14 x 64
         with tf.variable_scope("cnn2_" + name):
             W_conv2, b_conv2 = self.makeLayerVariables([4, 4, 32, 64], trainable, "conv2")
 
@@ -118,6 +120,7 @@ class DeepQNetwork:
             print(h_conv2)
 
         # Fourth layer convolves 64 3x3 filters with stride 1 with relu
+        # ( ( 14 - 3 ) / 1 ) + 1 = 12. Final is: 12 x 12 x 64
         with tf.variable_scope("cnn3_" + name):
             W_conv3, b_conv3 = self.makeLayerVariables([3, 3, 64, 64], trainable, "conv3")
 
@@ -125,12 +128,12 @@ class DeepQNetwork:
                                  name="h_conv3")
             print(h_conv3)
 
-        h_conv3_flat = tf.reshape(h_conv3, [-1, 7 * 7 * 64], name="h_conv3_flat")
+        h_conv3_flat = tf.reshape(h_conv3, [-1, 12 * 12 * 64], name="h_conv3_flat")
         print(h_conv3_flat)
 
         # Fifth layer is fully connected with 512 relu units
         with tf.variable_scope("fc1_" + name):
-            W_fc1, b_fc1 = self.makeLayerVariables([7 * 7 * 64, 512], trainable, "fc1")
+            W_fc1, b_fc1 = self.makeLayerVariables([12 * 12 * 64, 512], trainable, "fc1")
 
             h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flat, W_fc1) + b_fc1, name="h_fc1")
             print(h_fc1)
@@ -163,29 +166,36 @@ class DeepQNetwork:
         q_values = np.squeeze(y)
         return np.argmax(q_values)
 
-    def train(self, batch, stepNumber):
+    def train(self, s_t, s_t1, rewards, actions, terminals, stepNumber):
 
-        x2 = [b.state2.getScreens() for b in batch]
+        # s_t1
+        #x2 = [b.state2.getScreens() for b in batch]
+        x2 = s_t1
         y2 = self.y_target.eval(feed_dict={self.x_target: x2}, session=self.sess)
 
-        x = [b.state1.getScreens() for b in batch]
-        a = np.zeros((len(batch), self.numActions))
-        y_ = np.zeros(len(batch))
+        # s_t
+        # x = [b.state1.getScreens() for b in batch]
+        x = s_t
+        a = np.zeros((len(s_t), self.numActions))
+        y_ = np.zeros(len(s_t))
 
-        for i in range(0, len(batch)):
-            a[i, batch[i].action] = 1
-            if batch[i].terminal:
-                y_[i] = batch[i].reward
+
+        for i in range(0, len(s_t)):
+
+            a[i, actions[i]] = 1
+            if terminals[i]:
+                y_[i] = rewards[i]
             else:
-                y_[i] = batch[i].reward + gamma * np.max(y2[i])
+                y_[i] = rewards[i] + gamma * np.max(y2[i])
 
-        self.train_step.run(feed_dict={
+        curr_train_step, cur_loss = self.sess.run([self.train_step, self.loss], feed_dict={
             self.x: x,
             self.a: a,
             self.y_: y_
-        }, session=self.sess)
+        })
 
         if stepNumber % self.targetModelUpdateFrequency == 0:
+            print("---------Q-NETWORK UPDATED!")
             self.sess.run(self.update_target)
 
         if stepNumber % self.targetModelUpdateFrequency == 0 or stepNumber % self.saveModelFrequency == 0:
@@ -193,3 +203,5 @@ class DeepQNetwork:
             if not os.path.isdir(dir):
                 os.makedirs(dir)
             savedPath = self.saver.save(self.sess, dir + '/model', global_step=stepNumber)
+
+        return cur_loss
