@@ -1,2 +1,2 @@
-model_checkpoint_path: "/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/dqn.ckpt"
-all_model_checkpoint_paths: "/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/dqn.ckpt"
+model_checkpoint_path: "/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/ddpg.ckpt"
+all_model_checkpoint_paths: "/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/ddpg.ckpt"

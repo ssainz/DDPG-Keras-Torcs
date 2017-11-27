@@ -152,7 +152,7 @@ class TorcsEnv:
 
 
         if (abs(track.any()) > 1 or abs(trackPos) > 1):
-            reward = -5
+            #reward = -5
             print('Out of Bounds! count: ', self.out_of_bounds_counter, ' limit: ', self.out_of_bounds_counter_limit)
             self.out_of_bounds_counter = self.out_of_bounds_counter + 1
 

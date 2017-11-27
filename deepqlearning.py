@@ -42,7 +42,7 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
     EXPLORE = 100000.
     episode_count = 2000
-    max_steps = 20000
+    max_steps = 40000
     reward = 0
     done = False
     step = 0
@@ -65,18 +65,18 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
 
 
 
-    # 1. CREATE DQN NETWORK. (actions 18)
-    num_actions_steering = 11
-    num_actions_acceleration = 5
-    num_actions_break = 5
+    # 1. CREATE DQN NETWORK.
+    num_actions_steering = 13 # before it was 13
+    num_actions_acceleration = 9 # before it was 3
+    num_actions_break = 9 # before it was 3
     num_dqn_actions = num_actions_steering * num_actions_acceleration * num_actions_break
     base_dir = "/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/"
     args = {
         "save_model_freq": 1000,
-        "target_model_update_freq": 100,
+        "target_model_update_freq": 1000,
         "normalize_weights": True,
         #"learning_rate": 0.00025,
-        'learning_rate': 0.001,
+        'learning_rate': 0.00025,
         "model": None
     }
     dqn = DeepQNetwork(sess, num_dqn_actions, base_dir, args)
@@ -101,8 +101,8 @@ def playGame(train_indicator=1):    #1 means Train, 0 means simply Run
     #     # actor.target_model.load_weights("actormodel2.h5")
     #     # critic.target_model.load_weights("criticmodel2.h5")
     #     # print("Weight load successfully")
-    #     saver.restore(sess, base_dir + "dqn.ckpt")
-    #     print("model restored")
+    #      saver.restore(sess, base_dir + "dqn.ckpt")
+    #      print("model restored")
     # except:
     #    print("Cannot find the weight")
 

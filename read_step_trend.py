@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-inter = pc.load(open("/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/dqn_steer_13_accel_3_brake_3/InterEpisode.pkl", "rb"))
+inter = pc.load(open("/home/sergio/Projects/apclypsr/DDPG-Keras-Torcs/ddpg_tflearn_1/InterEpisode.pkl", "rb"))
 
 
 steps_trend = []
